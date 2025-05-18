@@ -1,5 +1,6 @@
 # foundation-transformer-llm
-Training a base transformer model to be used as a foundation model from first principles
+Training a base transformer model to be used as a foundation model from first principles.
+see https://github.com/ObrienlabsDev/machine-learning/issues/5
 
 ## Python
 ### Virtual Environment
