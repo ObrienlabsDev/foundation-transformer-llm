@@ -1,16 +1,20 @@
 import os
+import re
+
 
 # we will use the "Attention is all you need" paper as our training data for now
 file_path = "attention_is_all_you_need.txt"
 data_directory_path = "data"
 
 
-with open(file_path, "r", encoding="utf-8") as f:
+with open(file_path, "r", encoding="utf-8") as f: # auto close file
     raw_text=f.read()
 print("Chars: ", len(raw_text))
-print(raw_text[:99]) # print out the first 100 characters
+preprocessed_text = re.split(r"\s+", raw_text) # split the text into words
+#preprocessed_text = re.split(raw_text, r"\s+") # this compiles but is wrong
+print(preprocessed_text[:99]) # print out the first 100 characters
 
-# The dataset is too large to fit in memory, so we will use a generator to read it in chunks
+# split the file into 1k parts using a generator
 def get_text_generator(file_path, chunk_size=1024):
     with open(file_path, "r", encoding="utf-8") as f:
         while True:
