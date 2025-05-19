@@ -26,17 +26,17 @@ text_generator = get_text_generator(file_path, chunk_size=1024)
 os.makedirs(data_directory_path, exist_ok=True)
 
 # Create a file to store the training data
-with open("data/train.txt", "w", encoding="utf-8") as f:
+with open(os.path.join(data_directory_path, "train.txt"), "w", encoding="utf-8") as f:
     for i in range(10):
         text = next(text_generator)
         f.write(text)
 # Create a file to store the validation data
-with open("data/val.txt", "w", encoding="utf-8") as f:
+with open(os.path.join(data_directory_path, "val.txt"), "w", encoding="utf-8") as f:
     for i in range(10):
         text = next(text_generator)
         f.write(text)
 # Create a file to store the test data
-with open("data/test.txt", "w", encoding="utf-8") as f:
+with open(os.path.join(data_directory_path, "test.txt"), "w", encoding="utf-8") as f:
     for i in range(10):
         text = next(text_generator)
         f.write(text)
