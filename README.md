@@ -1,6 +1,8 @@
 # foundation-transformer-llm
 Training a base transformer model to be used as a foundation model from first principles.
 see https://github.com/ObrienlabsDev/machine-learning/issues/5
+
+- see agentic serving work in https://github.com/ObrienlabsDev/distrbuted-agentic-ai/issues/1
 ## Requirements
 ### Training
 ### Fine Tuning
