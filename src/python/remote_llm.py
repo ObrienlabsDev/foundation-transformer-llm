@@ -17,6 +17,7 @@ def call_remote_llm(prompt, model="deepseek-R1:70b"):
         "prompt": prompt,
         "stream": True
     }
+    # unused
     payload = {
         "model": model,
         "prompt": prompt,
@@ -36,13 +37,12 @@ def call_remote_llm(prompt, model="deepseek-R1:70b"):
                     try:
                         json_chunk = json.loads(chunk.decode('utf-8'))
                         if 'response' in json_chunk:
-                            print(json_chunk)
+                            #print(json_chunk)
                             # parse {'model': 'deepseek-R1:70b', 'created_at': '2025-07-24T02:56:41.585812Z', 'response': '<think>', 'done': False}
                             print(json_chunk['response'], end='', flush=True)
-                            print("test")
                         elif 'error' in json_chunk:
                             print(f"Error: {json_chunk['error']}")
-                        break
+                            break
                     except json.JSONDecodeError:
                         # Handle cases where a chunk might not be a complete JSON object
                         pass
