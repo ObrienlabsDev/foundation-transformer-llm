@@ -21,31 +21,27 @@ def call_remote_llm(prompt, model="deepseek-R1:70b"):
     payload = {
         "model": model,
         "prompt": prompt,
-        "stream": True,  # Set to True for streaming responses
-        "temperature": 0.7,  # Adjust temperature for creativity
-        "top_p": 0.9,  # Adjust top_p for diversity
-        "max_tokens": 2048,  # Limit the response length
-        "stop": ["\n", "<|endoftext|>"]  # Define
+        "stream": True, 
+        "temperature": 0.7,  # creativity
+        "top_p": 0.9,  # diversity
+        "max_tokens": 2048,  
+        "stop": ["\n", "<|endoftext|>"] 
     }
     try:
         with requests.post(REMOTE_LLM_URL, headers=headers, data=json.dumps(data), stream=True) as response:
-        #with requests.post(REMOTE_LLM_URL, headers=headers, json=payload, stream=True) as response:
-
-            response.raise_for_status()  # Raise an exception for bad status codes
-            for chunk in response.iter_lines():
-                if chunk:
+            response.raise_for_status() 
+            for packets in response.iter_lines():
+                if packets:
                     try:
-                        json_chunk = json.loads(chunk.decode('utf-8'))
-                        if 'response' in json_chunk:
-                            #print(json_chunk)
+                        json_packet = json.loads(packets.decode('utf-8'))
+                        if 'response' in json_packet:
                             # parse {'model': 'deepseek-R1:70b', 'created_at': '2025-07-24T02:56:41.585812Z', 'response': '<think>', 'done': False}
-                            print(json_chunk['response'], end='', flush=True)
-                        elif 'error' in json_chunk:
-                            print(f"Error: {json_chunk['error']}")
+                            print(json_packet['response'], end='', flush=True)
+                        elif 'error' in json_packet:
+                            print(f"Error: {json_packet['error']}")
                             break
                     except json.JSONDecodeError:
-                        # Handle cases where a chunk might not be a complete JSON object
-                        pass
+                        pass # siliently ignore
     except requests.exceptions.RequestException as e:
         print(f"Request failed: {e}")
 
