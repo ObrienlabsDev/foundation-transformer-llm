@@ -7,11 +7,18 @@ import java.util.Scanner;
 public class Tokenizer {
 	
 	public void parse() {
+		Scanner scanner = null;
 		try {
 			File file = new File(getClass().getClassLoader().getResource("data/train.txt").getFile());
-			Scanner scanner = new Scanner(file);
+			scanner = new Scanner(file);
+			while(scanner.hasNext()) {
+				String token = scanner.next();
+				System.out.println(token);
+			}
 		} catch (IOException ioe) {
 			ioe.printStackTrace();
+		} finally {
+			scanner.close();
 		}
 		
 	}
