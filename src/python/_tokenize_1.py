@@ -14,7 +14,7 @@ from SimpleTokenizerV1 import SimpleTokenizerV1
 #urllib.request.urlretrieve(url, file_path)
 
 # load downloaded file
-with open("data/the-verdict.txt", "r", encoding="utf-8") as f:
+with open("src/python/data/the-verdict.txt", "r", encoding="utf-8") as f:
     raw_text = f.read()
 print("chars", len(raw_text))
 # tokenize on whitespace \s and periods/commans ,.
@@ -35,13 +35,15 @@ print(vocab_size)
 
 # create a vocabulary dictionary
 vocab = {token:integer for integer,token in enumerate(all_words)}
-for i, item in enumerate(vocab.items()):
-    #print(item)
-    if i >= 50:
-        break
+#for i, item in enumerate(vocab.items()):
+#    print(item)
+#    if i >= 50:
+#        break
 
 tokenizer = SimpleTokenizerV1(vocab)
 text = """"It's the last he painted, you know," 
        Mrs. Gisburn said with pardonable pride."""
 ids = tokenizer.encode(text)
 print(ids)
+decoded_text = tokenizer.decode(ids)
+print(decoded_text)
