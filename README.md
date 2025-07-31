@@ -1,6 +1,7 @@
-# foundation-transformer-llm
-Training a base transformer model to be used as a foundation model from first principles.
-see https://github.com/ObrienlabsDev/machine-learning/issues/5
+# Abstract
+Training a base non-recurrent transformer model using self attention to be used as a foundation model from first principles.  My base is generative pre-trained transformers in the model of the "Attention Is All You Need" paper 1706.03762 from Google 
+- https://arxiv.org/abs/1706.03762
+- https://github.com/ObrienlabsDev/machine-learning/issues/5
 
 - see agentic serving work in https://github.com/ObrienlabsDev/distrbuted-agentic-ai/issues/1
 ## Requirements
