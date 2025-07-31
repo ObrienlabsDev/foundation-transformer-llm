@@ -1,10 +1,12 @@
 
 # michaelobrien 20250728 using as a guide "build a large language model from scratch - Sebastian Raschka"
+from importlib.metadata import version
+from SimpleTokenizerV1 import SimpleTokenizerV1
 
 import urllib.request
 import re
-
-from SimpleTokenizerV1 import SimpleTokenizerV1
+# tiktoken from openai
+import tiktoken
 
 # use a public dataset for initial testing
 #url = ("https://raw.githubusercontent.com/rasbt/"
@@ -12,9 +14,13 @@ from SimpleTokenizerV1 import SimpleTokenizerV1
 #       "the-verdict.txt")
 #file_path = "data/the-verdict.txt"
 #urllib.request.urlretrieve(url, file_path)
+print("tiktoken version:", version("tiktoken"))
+#instantiate tiktoken tokenizer
+tokenizer = tiktoken.get_encoding("gpt2")
+
 
 # load downloaded file
-with open("src/python/data/the-verdict.txt", "r", encoding="utf-8") as f:
+with open("data/the-verdict.txt", "r", encoding="utf-8") as f:
     raw_text = f.read()
 print("chars", len(raw_text))
 # tokenize on whitespace \s and periods/commans ,.
@@ -53,3 +59,12 @@ ids = tokenizer.encode(text)
 print(ids)
 decoded_text = tokenizer.decode(ids)
 print(decoded_text)
+
+bpTokenizer = tiktoken.get_encoding("gpt2")
+text = (
+    "Hello, do you like tea? <|endoftext|> In the sunlit terraces of someunknownPlace."
+)
+integers = bpTokenizer.encode(text, allowed_special={"<|endoftext|>"})
+print(integers)
+strings = bpTokenizer.decode(integers)
+print(strings)
