@@ -7,6 +7,7 @@ import urllib.request
 import re
 # tiktoken from openai
 import tiktoken
+import torch
 
 # use a public dataset for initial testing
 #url = ("https://raw.githubusercontent.com/rasbt/"
@@ -14,6 +15,8 @@ import tiktoken
 #       "the-verdict.txt")
 #file_path = "data/the-verdict.txt"
 #urllib.request.urlretrieve(url, file_path)
+print("pytorch version:", version("torch"))
+print(torch.backends.mps.is_available())
 print("tiktoken version:", version("tiktoken"))
 #instantiate tiktoken tokenizer
 tokenizer = tiktoken.get_encoding("gpt2")
@@ -60,6 +63,7 @@ print(ids)
 decoded_text = tokenizer.decode(ids)
 print(decoded_text)
 
+# Byte Pair Encoding (BPE) tokenizer from tiktoken
 bpTokenizer = tiktoken.get_encoding("gpt2")
 text = (
     "Hello, do you like tea? <|endoftext|> In the sunlit terraces of someunknownPlace."
@@ -68,3 +72,10 @@ integers = bpTokenizer.encode(text, allowed_special={"<|endoftext|>"})
 print(integers)
 strings = bpTokenizer.decode(integers)
 print(strings)
+
+# try the BP tokenizer on the raw text
+enc_text = bpTokenizer.encode(raw_text)
+print(len(enc_text))
+
+# check pytorch
+# pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
