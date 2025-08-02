@@ -22,4 +22,7 @@ deactivate
 ### Pytorch for CUDA and Metal
 ```
 pip3 install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
+import torch
+print("pytorch version:", version("torch"))
+print(torch.backends.mps.is_available())
 ```
