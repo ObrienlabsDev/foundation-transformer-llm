@@ -1,6 +1,8 @@
 
 # pip install -U transformers kernels torch 
 # pip install accelerate
+# from Sebastian Raschka
+# pip install --pre torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/nightly/cpu
 from transformers import pipeline
 import torch
 
@@ -21,7 +23,7 @@ pipe = pipeline(
     "text-generation",
     model=model_id,
     torch_dtype="auto",
-    device_map="cpu",#auto",
+    device_map="auto",
 )
 
 messages = [
