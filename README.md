@@ -34,3 +34,4 @@ print(torch.backends.mps.is_available())
 
 # Links
 - 20260208 - circa Aug 2023 https://forum.effectivealtruism.org/posts/ErQdvzA9qqRA2gFBL/report-on-frontier-model-training
+- 20260208 - Nanochat on 2 NVIDIA DGX Spark - https://forums.developer.nvidia.com/t/pretrain-nanochat-on-2-x-dgx-sparks/350564
