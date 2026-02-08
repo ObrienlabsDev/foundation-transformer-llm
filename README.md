@@ -11,6 +11,8 @@ Training a base non-recurrent transformer model using self attention to be used 
 ### Fine Tuning
 - https://modal.com/blog/how-much-vram-need-fine-tuning
 - The maximum VRAM i have available is 72G on a base M3 Ultra (96G ram) or 48G on my RTX-A6000 or the base M2 Ultra - using the formula above be need 16x parameters forbhalf FP16 precision - which fits a 7B model
+- 2026 update - make that 128g on an NVIDIA DGX Spark with 200gbps networking
+- Thunderbolt 5 peaks at 66gbps between M3ultra, M4pro, M4max nodes
 ## Python
 ### Virtual Environment
 - https://docs.python.org/3/library/venv.html
@@ -28,3 +30,7 @@ import torch
 print("pytorch version:", version("torch"))
 print(torch.backends.mps.is_available())
 ```
+
+
+# Links
+- 20260208 - circa Aug 2023 https://forum.effectivealtruism.org/posts/ErQdvzA9qqRA2gFBL/report-on-frontier-model-training
